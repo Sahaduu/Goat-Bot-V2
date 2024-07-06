@@ -1,4 +1,4 @@
-if (!global.client.busyList)
+-cmd install busy.js if (!global.client.busyList)
 	global.client.busyList = {};
 
 module.exports = {
@@ -36,7 +36,7 @@ module.exports = {
 			turnedOnWithReason: "✅ | Do not disturb mode has been turned on with reason: %1",
 			turnedOnWithoutReason: "✅ | Do not disturb mode has been turned on",
 			alreadyOn: "User %1 is currently busy",
-			alreadyOnWithReason: "User %1 is currently busy with reason: %2"
+			alreadyOnWithReason: "🗣️Inner %1: %2"
 		}
 	},
 
