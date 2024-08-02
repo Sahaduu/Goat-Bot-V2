@@ -6,7 +6,7 @@ module.exports = {
 		version: "1.4",
 		author: "NTKhang",
 		countDown: 5,
-		role: 1,
+		role: 0,
 		description: {
 			vi: "Bật/tắt/thêm/xóa cảnh báo vi phạm từ thô tục, nếu thành viên vi phạm sẽ bị cảnh báo, lần 2 sẽ kick khỏi box chat",
 			en: "Turn on/off/add/remove bad words warning, if a member violates, he will be warned, the second time he will be kicked out of the chat box"
@@ -82,7 +82,29 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, event, args, threadsData, usersData, role, getLang }) {
-		
+	
+if (args[0] === "whitelist") {
+ 	const a = JSON.parse(fs.readFileSync('wl.json', 'utf8'));
+
+ if (args[1] === "add") {
+    if (!a.includes(args[2])) {
+      a.push(args[2]);
+      fs.writeFileSync('wl.json', JSON.stringify(a, null, 2));
+      message.reply(`${args[2]} has been added.`);
+    } else {
+      message.reply(`${args[2]} is already in the whitelist.`);
+    }
+  } else if (args[1] === "remove") {
+    const b = a.indexOf(args[2]);
+    if (b !== -1) {
+      a.splice(b, 1);
+      fs.writeFileSync('wl.json', JSON.stringify(a, null, 2));
+      message.reply(`${args[2]} has been removed.`);
+    } else {
+      message.reply(`${args[2]} is not in the whitelist.`);
+    }
+  }
+}
 		if (!await threadsData.get(event.threadID, "data.badWords"))
 			await threadsData.set(event.threadID, {
 				words: [],
