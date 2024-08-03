@@ -2,8 +2,8 @@ const axios = require("axios");
 
 module.exports = {
   config: {
-    name: "lily",
-    aliases: "cat",
+    name: "cat",
+    aliases: [],
     version: "1.0",
     author: "NZ R",
     category: "Chat~AI",
